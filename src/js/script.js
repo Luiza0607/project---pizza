@@ -288,14 +288,10 @@
       const thisWidget = this;
       const newValue = parseInt(value);
 
-      /* To Do : Add validation */
-      if ((thisWidget.value !== newValue) && !isNaN(newValue)) {
+      if ((thisWidget.value !== newValue) && !isNaN(newValue) && (newValue <= 10) && (newValue >= 0)) {
         thisWidget.value = newValue;
       }
-
-      if ((newValue >= (settings.amountWidget.defaultMin - 1)) && (newValue <= (settings.amountWidget.defaultMax + 1))) {
-        thisWidget.input.value = thisWidget.value;
-      }
+      thisWidget.input.value = thisWidget.value;
       thisWidget.announce();
     }
 
@@ -306,15 +302,11 @@
       });
       thisWidget.linkDecrease.addEventListener('click', function (event) {
         event.preventDefault();
-        if ((thisWidget.value <= 10) && (thisWidget.value > 0)) {
-          thisWidget.setValue(thisWidget.value - 1);
-        }
+        thisWidget.setValue(thisWidget.value - 1);
       });
       thisWidget.linkIncrease.addEventListener('click', function (event) {
         event.preventDefault();
-        if ((thisWidget.value < 10) && (thisWidget.value >= 0)) {
-          thisWidget.setValue(thisWidget.value + 1);
-        }
+        thisWidget.setValue(thisWidget.value + 1);
       });
     }
 
@@ -555,7 +547,7 @@
           /* save parsedResponse at thisApp.data.products */
           thisApp.data.products = parsedResponse;
           /* execute initMenu method */
-          thisApp.initMenu();
+          app.initMenu();
 
         });
       //console.log('thisApp.data', JSON.stringify(thisApp.data));
