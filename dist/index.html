@@ -9,6 +9,9 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext"
     rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="./vendor/range-slider.min.css">
+  <link rel="stylesheet" href="./vendor/flickity.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -64,6 +67,9 @@
   </header>
 
   <div id="pages">
+    <section id="home">
+      <div class="home-wrapper container"></div>
+    </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
     </section>
@@ -71,6 +77,85 @@
       <div class="booking-wrapper container"></div>
     </section>
   </div>
+
+  <script id="template-home-widget" type="text/x-handlebars-template">
+    <div class="home">
+      <div class="info">
+        <a href="#order">
+          <h3>ORDER ONLINE</h3>
+        </a>
+        <img src="images/assets/pizza-1.jpg">
+      </div>
+      <div class="info">
+        <a href="#booking">
+          <h3>BOOK A TABLE</h3>
+        </a>
+        <img src="images/assets/pizza-2.jpm">
+      </div>
+      <div class="info-center">
+        <h1>OPENING HOURS:</h1>
+        <P>TUE-SUN 12PM-12AM</P>
+      </div>
+    </div>
+    <div class="main-carousel">
+      <div class="carousel-cell">
+        <div class="image">
+          <img src="images/assets/pizza-3.jpg" alt="pizza-1">
+        </div>
+        <div class="opinion">
+          <div class="statement">
+            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar ante vitae leo sodales euismod.</h3>
+            <p class="author">-Lorem Ipsum</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-cell">
+        <div class="image">
+          <img src="images/assets/pizza-3.jpg" alt="pizza-2">
+        </div>
+        <div class="opinion">
+          <div class="statement">
+            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar ante vitae leo sodales euismod.</h3>
+            <p class="author">-Lorem Ipsum</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-cell">
+        <div class="image">
+          <img src="images/assets/pizza-3.jpg" alt="pizza-3">
+        </div>
+        <div class="opinion">
+          <div class="statement">
+            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar ante vitae leo sodales euismod.</h3>
+            <p class="author">-Lorem Ipsum</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="gallery">
+      <div class="item">
+        <img src="images/assets/pizza-4.jpg" alt="pizza-4">
+      </div>  
+      <div class="item">
+        <img src="images/assets/pizza-5.jpg" alt="pizza-5">
+      </div>  
+      <div class="item"> 
+        <img src="images/assets/pizza-6.jpg" alt="pizza-6">
+      </div>
+      <div class="item">
+        <img src="images/assets/pizza-7.jpg" alt="pizza-7">
+      </div>  
+      <div class="item">
+        <img src="images/assets/pizza-8.jpg" alt="pizza-8">
+      </div>  
+      <div class="item">
+        <img src="images/assets/pizza-9.jpg" alt="pizza-9">
+      </div>  
+    </div>
+    <div class="footer">
+      <a href="#">View more in Instagram</a>
+    </div>
+  </script>
 
   <script id="template-cart-product" type="text/x-handlebars-template">
     <li>
@@ -179,71 +264,75 @@
     </article> <!-- .product -->
   </script>
   <script id="template-booking-widget" type="text/x-handlebars-template">
-      <div class="booking-widget">
-        <h2 class="page__title no-spacing">Book a table</h2>
-        <form class="booking-form">
-          <div class="time-picker">
-            <div class="date-picker">
-              <label class="booking-option-title">Pick a date</label>
-              <input type="text" name="date">
+    <div class="booking-widget">
+      <h2 class="page__title no-spacing">Book a table</h2>
+      <form class="booking-form">
+        <div class="time-picker">
+          <div class="date-picker">
+            <label class="booking-option-title">Pick a date</label>
+            <input type="text" name="date">
+          </div>
+          <div class="hour-picker range-slider">
+              <div class="output"></div>
+              <label class="booking-option-title">Pick a time</label>
+            <input type="range" name="hour" value="12" min="12" max="24" step="0.5">
+          </div>
+        </div>
+        <div class="floor-plan">
+          <div class="object entry">entry</div>
+          <div class="object bar">bar</div>
+          <div class="object table" data-table="1">table-1</div>
+          <div class="object table table--round" data-table="2">table-2</div>
+          <div class="object table" data-table="3">table-3</div>
+        </div>
+        <div class="booking-options"> <!-- options -->
+          <label class="booking-option-title"> <!-- option-row -->
+            People
+            <div class="widget-amount people-amount"> <!-- widget-amount -->
+              <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
+              <input class="amount" type="text" name="people" value="1">
+              <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
             </div>
-            <div class="hour-picker range-slider">
-                <div class="output"></div>
-                <label class="booking-option-title">Pick a time</label>
-              <input type="range" name="hour" value="12" min="12" max="24" step="0.5">
+          </label>
+          <label class="booking-option-title"> <!-- option-row -->
+            Hours
+            <div class="widget-amount hours-amount"> <!-- widget-amount -->
+              <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
+              <input class="amount" type="text" name="hours" value="1">
+              <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
+            </div>
+          </label>
+          <div> <!-- option-row -->
+            <span class="booking-option-title">Starters</span>
+            <div class="checkbox"> <!-- checkbox -->
+              <label>
+                <input type="checkbox" name="starter" value="water">
+                <span class="checkbox__checkmark"></span>
+                Water
+              </label>
+            </div>
+            <div class="checkbox"> <!-- checkbox -->
+              <label>
+                <input type="checkbox" name="starter" value="bread">
+                <span class="checkbox__checkmark"></span>
+                Bread
+              </label>
             </div>
           </div>
-          <div class="floor-plan">
-            <div class="object entry">entry</div>
-            <div class="object bar">bar</div>
-            <div class="object table" data-table="1">table-1</div>
-            <div class="object table table--round" data-table="2">table-2</div>
-            <div class="object table" data-table="3">table-3</div>
-          </div>
-          <div class="booking-options"> <!-- options -->
-            <label class="booking-option-title"> <!-- option-row -->
-              People
-              <div class="widget-amount people-amount"> <!-- widget-amount -->
-                <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
-                <input class="amount" type="text" name="people" value="1">
-                <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
-              </div>
-            </label>
-            <label class="booking-option-title"> <!-- option-row -->
-              Hours
-              <div class="widget-amount hours-amount"> <!-- widget-amount -->
-                <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
-                <input class="amount" type="text" name="hours" value="1">
-                <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
-              </div>
-            </label>
-            <div> <!-- option-row -->
-              <span class="booking-option-title">Starters</span>
-              <div class="checkbox"> <!-- checkbox -->
-                <label>
-                  <input type="checkbox" name="starter" value="water">
-                  <span class="checkbox__checkmark"></span>
-                  Water
-                </label>
-              </div>
-              <div class="checkbox"> <!-- checkbox -->
-                <label>
-                  <input type="checkbox" name="starter" value="bread">
-                  <span class="checkbox__checkmark"></span>
-                  Bread
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="order-confirmation">
-            <input type="tel" name="phone" placeholder="Your phone">
-            <input type="text" name="address" placeholder="Your address">
-            <button type="submit" class="btn-secondary">Book table</button>
-          </div>
-        </form>
-      </div>
-    </script>
+        </div>
+        <div class="order-confirmation">
+          <input type="tel" name="phone" placeholder="Your phone">
+          <input type="text" name="address" placeholder="Your address">
+          <button type="submit" class="btn-secondary">Book table</button>
+        </div>
+      </form>
+    </div>
+  </script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="./vendor/range-slider.min.js"></script>
+  <script src="./vendor/flickity.pkgd.min.js"></script>
   <script src="js/app.js" type="module"></script>
 </body>
 

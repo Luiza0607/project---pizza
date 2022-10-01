@@ -1,20 +1,23 @@
-import select from '../settings.js';
+import { select } from '../settings.js';
 import AmountWidget from '../components/AmountWidget.js';
 
 class CartProduct {
   constructor(menuProduct, element) {
     const thisCartProduct = this;
 
-    thisCartProduct.id = menuProduct.id;
-    thisCartProduct.name = menuProduct.name;
-    thisCartProduct.amount = menuProduct.amount;
-    thisCartProduct.price = menuProduct.price;
-    thisCartProduct.priceSingle = menuProduct.priceSingle;
+    thisCartProduct.id = menuProduct.id,
+    thisCartProduct.name = menuProduct.name,
+    thisCartProduct.amount = menuProduct.amount,
+    thisCartProduct.price = menuProduct.price,
+    thisCartProduct.priceSingle = menuProduct.priceSingle,
 
     thisCartProduct.getElements(element);
     thisCartProduct.initAmountWidget();
     thisCartProduct.initActions();
+
+    //console.log('thisCartProduct:', thisCartProduct);
   }
+
   getElements(element) {
     const thisCartProduct = this;
 
@@ -31,13 +34,13 @@ class CartProduct {
     const thisCartProduct = this;
 
     thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidgetElem);
-
     thisCartProduct.dom.amountWidgetElem.addEventListener('updated', function () {
       thisCartProduct.amount = thisCartProduct.amountWidget.value;
       thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
       thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
     });
   }
+
   remove() {
     const thisCartProduct = this;
 
@@ -50,21 +53,25 @@ class CartProduct {
 
     thisCartProduct.dom.wrapper.dispatchEvent(event);
   }
+
   initActions() {
     const thisCartProduct = this;
 
     thisCartProduct.dom.edit.addEventListener('click', function (event) {
       event.preventDefault();
     });
+
     thisCartProduct.dom.remove.addEventListener('click', function (event) {
       event.preventDefault();
       thisCartProduct.remove();
+      console.log('REMOVE:', thisCartProduct.remove());
     });
   }
+
   getData() {
     const thisCartProduct = this;
 
-    const productsDataForOrder = {
+    const getProductSummary = {
       id: thisCartProduct.id,
       amount: thisCartProduct.amount,
       price: thisCartProduct.price,
@@ -72,8 +79,8 @@ class CartProduct {
       name: thisCartProduct.name,
       params: thisCartProduct.params
     };
-
-    return productsDataForOrder;
+    return getProductSummary;
   }
 }
+
 export default CartProduct;

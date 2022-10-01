@@ -1,19 +1,24 @@
-import { settings, select, classNames, templates } from '../settings.js';
+import { select, templates, settings, classNames } from '../settings.js';
 import utils from '../utils.js';
-import CartProduct from '../components/CartProduct.js';
+import CartProduct from './CartProduct.js';
 
 class Cart {
   constructor(element) {
     const thisCart = this;
+
     thisCart.products = [];
+
     thisCart.getElements(element);
     thisCart.initActions();
-    //console.log('new Cart', thisCart);
+
+    //console.log('NEW CART', thisCart);
   }
 
   getElements(element) {
     const thisCart = this;
+
     thisCart.dom = {};
+
     thisCart.dom.wrapper = element;
     thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
     thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
@@ -28,15 +33,20 @@ class Cart {
 
   initActions() {
     const thisCart = this;
+
     thisCart.dom.toggleTrigger.addEventListener('click', function () {
       thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
     });
+
     thisCart.dom.productList.addEventListener('updated', function () {
       thisCart.update();
     });
+
     thisCart.dom.productList.addEventListener('remove', function (event) {
       thisCart.remove(event.detail.cartProduct);
+      console.log('REMOVE:', event.detail.cartProduct);
     });
+
     thisCart.dom.form.addEventListener('submit', function (event) {
       event.preventDefault();
       thisCart.sendOrder();
@@ -45,22 +55,22 @@ class Cart {
 
   add(menuProduct) {
     const thisCart = this;
-    // console.log('adding product', menuProduct)
-    /* Generate HTML based on template */
+
     const generatedHTML = templates.cartProduct(menuProduct);
-    /* create element using utils.createElementFromHTML */
+
     const generatedDOM = utils.createDOMFromHTML(generatedHTML);
-    /* add element to menu */
+
     thisCart.dom.productList.appendChild(generatedDOM);
-    /* Push data bout products to array */
+
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-    // console.log('thisCart.products', thisCart.products);
+
     thisCart.update();
   }
   update() {
     const thisCart = this;
 
     const deliveryFee = settings.cart.defaultDeliveryFee;
+
     thisCart.totalNumber = 0;
     thisCart.subtotalPrice = 0;
     thisCart.totalPrice = 0;
@@ -70,27 +80,30 @@ class Cart {
       thisCart.subtotalPrice += product.price;
     }
 
-    // console.log('totalNumber: ', totalNumber, 'totalPrice: ', subtotalPrice);
     if (thisCart.subtotalPrice != 0) {
-      thisCart.totalPrice = thisCart.subtotalPrice + deliveryFee;
+      thisCart.totalPrice = thisCart.totalPrice + deliveryFee;
       thisCart.dom.deliveryFee.innerHTML = deliveryFee;
     } else {
       thisCart.totalPrice = 0;
       thisCart.dom.deliveryFee.innerHTML = 0;
     }
-    // console.log(subtotalPrice);
 
     thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
     thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
+    thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice;
+
     for (let item of thisCart.dom.totalPrice) {
       item.innerHTML = thisCart.totalPrice;
     }
   }
+
   remove(event) {
     const thisCart = this;
+
     event.dom.wrapper.remove();
-    const productToRemove = thisCart.products.indexOf(event);
-    thisCart.products.splice(productToRemove, 1);
+
+    const removeProduct = thisCart.products.indexOf(event);
+    thisCart.products.splice(removeProduct, 1);
     thisCart.update();
   }
 
@@ -108,9 +121,12 @@ class Cart {
       deliveryFee: settings.cart.defaultDeliveryFee,
       products: [],
     };
+    //console.log('PAYLOAD:', url, payload);
+
     for (let prod of thisCart.products) {
       payload.products.push(prod.getData());
     }
+
     const options = {
       method: 'POST',
       headers: {
@@ -123,8 +139,9 @@ class Cart {
       .then(function (response) {
         return response.json();
       }).then(function (parsedResponse) {
-        console.log('parsedResponse: ', parsedResponse);
+        console.log(parsedResponse);
       });
   }
 }
-export default Cart;
+
+export default Cart; 
