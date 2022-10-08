@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { select } from '../settings.js';
 import AmountWidget from '../components/AmountWidget.js';
 
@@ -6,12 +7,12 @@ class CartProduct {
     const thisCartProduct = this;
 
     thisCartProduct.id = menuProduct.id,
-    thisCartProduct.name = menuProduct.name,
-    thisCartProduct.amount = menuProduct.amount,
-    thisCartProduct.price = menuProduct.price,
-    thisCartProduct.priceSingle = menuProduct.priceSingle,
+      thisCartProduct.name = menuProduct.name,
+      thisCartProduct.amount = menuProduct.amount,
+      thisCartProduct.price = menuProduct.price,
+      thisCartProduct.priceSingle = menuProduct.priceSingle,
 
-    thisCartProduct.getElements(element);
+      thisCartProduct.getElements(element);
     thisCartProduct.initAmountWidget();
     thisCartProduct.initActions();
 

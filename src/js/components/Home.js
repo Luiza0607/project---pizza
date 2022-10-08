@@ -1,4 +1,3 @@
-
 import { templates } from '../settings.js';
 
 class Home {
@@ -31,6 +30,4 @@ class Home {
     });
   }
 }
-
-
 export default Home;
