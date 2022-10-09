@@ -1,4 +1,4 @@
-import { settings, select, classNames } from './settings.js';
+import { settings, select, classNames, } from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
@@ -23,8 +23,7 @@ const app = {
       }
     }
 
-    console.log('pageMatchingHash', pageMatchingHash);
-    thisApp.activatePage(idFromHash);
+    thisApp.activatePage(pageMatchingHash);
 
     for (let link of thisApp.navLinks) {
       link.addEventListener('click', function (event) {
@@ -59,7 +58,7 @@ const app = {
         link.getAttribute('href') == '#' + pageId
       );
     }
-
+    app.home.refresh();
   },
 
   initMenu: function () {
@@ -85,7 +84,6 @@ const app = {
       .then(function (parsedResponse) {
         // save parsedResponse at thisApp.data.products
         thisApp.data.products = parsedResponse;
-        console.log('PARSEDRESPONSE:', parsedResponse);
         // execute initMenu method
         app.initMenu();
       });
@@ -126,12 +124,12 @@ const app = {
     //console.log('classNames:', classNames);
     //console.log('settings:', settings);
     //console.log('templates:', templates);
-
+    thisApp.initHome();
     thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
-    thisApp.initHome();
+
   },
 
 };

@@ -48,7 +48,9 @@
   text-transform: uppercase;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -66,6 +68,7 @@ body {
   max-width: 700px;
   margin: 0 auto;
   padding: 0 20px;
+  font-family: "Oswald", sans-serif;
 }
 
 /* Buttons */
@@ -740,11 +743,13 @@ select.error {
   align-items: center;
   width: 100%;
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 .orders {
   position: relative;
-  width: 100%;
+  flex: 0 0 50%;
+  padding-right: 10px;
 }
 .orders h1 {
   color: white;
@@ -770,8 +775,9 @@ select.error {
 
 .bookings {
   position: relative;
-  width: 100%;
   margin: 0 auto;
+  flex: 0 0 50%;
+  padding-left: 10px;
 }
 .bookings h1 {
   color: white;
@@ -779,7 +785,7 @@ select.error {
   margin: 0 auto;
   position: absolute;
   top: 50%;
-  left: 60%;
+  left: 50%;
   margin-right: -50%;
   transform: translate(-45%, -50%);
   transition: 0.3s;
@@ -794,19 +800,19 @@ select.error {
   border-radius: 4px;
 }
 
-.open {
+.home-wrapper .open {
   margin-top: 5px;
   padding-top: 30px;
   text-align: center;
   background-color: #ff6b6b;
   color: white;
-  width: auto;
   height: 150px;
   border-radius: 4px;
   font-family: "Oswald", sans-serif;
   line-height: 5px;
+  flex: 0 0 100%;
 }
-.open h1 {
+.home-wrapper .open h1 {
   font-size: 25px;
 }
 
@@ -872,14 +878,14 @@ p {
   font-size: 20px;
   position: absolute;
   left: 50%;
-  top: 25%;
+  top: 40%;
   z-index: -1;
 }
 .gallery .item .like i:hover {
   color: red;
 }
 .gallery .item .like .fa-share:hover {
-  color: blue;
+  color: red;
 }
 
 .gallery .item:hover .like {

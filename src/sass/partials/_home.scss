@@ -14,11 +14,13 @@
   align-items: center;
   width: 100%;
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 .orders {
   position: relative;
-  width: 100%;
+  flex: 0 0 50%;
+  padding-right: 10px;
 
   h1 {
     color: white;
@@ -47,8 +49,9 @@
 
 .bookings {
   position: relative;
-  width: 100%;
   margin: 0 auto;
+  flex: 0 0 50%;
+  padding-left: 10px;
 
   h1 {
     color: white;
@@ -56,7 +59,7 @@
     margin: 0 auto;
     position: absolute;
     top: 50%;
-    left: 60%;
+    left: 50%;
     margin-right: -50%;
     transform: translate(-45%, -50%);
     transition: 0.3s;
@@ -74,17 +77,17 @@
   }
 }
 
-.open {
+.home-wrapper .open {
   margin-top: 5px;
   padding-top: 30px;
   text-align: center;
   background-color: $color-main;
   color: white;
-  width: auto;
   height: 150px;
   border-radius: 4px;
   font-family: $font-header;
   line-height: 5px;
+  flex: 0 0 100%;
 
   h1 {
     font-size: 25px;
@@ -153,7 +156,7 @@ p {
   font-size: 20px;
   position: absolute;
   left: 50%;
-  top: 25%;
+  top: 40%;
   z-index: -1;
 
   i:hover {
@@ -161,7 +164,7 @@ p {
   }
 
   .fa-share:hover {
-    color: blue;
+    color: red;
   }
 }
 

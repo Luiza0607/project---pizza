@@ -56,7 +56,7 @@ export const select = {
   },
 
   nav: {
-    links: '.main-nav a',
+    links: '.main-nav a, .home-wrapper .info a',
   },
   // CODE ADDED START
   cart: {

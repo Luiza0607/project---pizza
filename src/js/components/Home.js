@@ -19,7 +19,7 @@ class Home {
     const elem = document.querySelector('.main-carousel');
 
     //eslint-disable-next-line no-undef
-    new Flickity(elem, {
+    this.flickity = new Flickity(elem, {
       //options
       cellAlign: 'left',
       contain: true,
@@ -28,6 +28,10 @@ class Home {
       wrapAround: true,
       imagesLoaded: true,
     });
+  }
+
+  refresh() {
+    this.flickity.resize();
   }
 }
 export default Home;

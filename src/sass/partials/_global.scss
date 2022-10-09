@@ -1,4 +1,6 @@
-*,*::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -16,4 +18,5 @@ body {
   max-width: 700px;
   margin: 0 auto;
   padding: 0 20px;
+  font-family: "Oswald", sans-serif;
 }
