@@ -36,7 +36,6 @@
         "eslint": "^5.14.1",
         "globstar": "^1.0.0",
         "html-validate": "^7.3.2",
-        "json-server": "^0.17.1",
         "mkdirp": "^0.5.1",
         "npm-run-all": "^4.1.5",
         "onchange": "^7.1.0",
@@ -53,6 +52,7 @@
     "dependencies": {
         "flatpickr": "^4.6.13",
         "flickity": "^3.0.0",
-        "rangeslider-pure": "^0.4.11"
+        "rangeslider-pure": "^0.4.11",
+		"json-server": "^0.17.1"
     }
 }
